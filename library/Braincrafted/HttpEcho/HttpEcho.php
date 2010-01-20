@@ -62,9 +62,7 @@ class HttpEcho
 					{
 						$output .= str_repeat(' ', 25);
 					}
-					$output .= str_pad((is_string($key) ? '"' : '') . $key . (is_string($key) ? '"' : ''), 20) . '=> '
-							. (is_string($valueValue) ? '"' : '') . $valueValue . (is_string($valueValue) ? '"' : '')
-							. "\n";
+					$output .= str_pad($this->formatValue($key), 20) . '=> ' . $this->formatValue($valueValue) . "\n";
 					++$i;
 				}
 			}
@@ -72,21 +70,9 @@ class HttpEcho
 			{
 				$output .= "[no values]\n";
 			}
-			elseif (is_bool($value))
-			{
-				$output .= ($value ? 'TRUE' : 'FALSE') . "\n";
-			}
-			elseif (is_null($value))
-			{
-				$output .= "NULL\n";
-			}
-			elseif (is_string($value))
-			{
-				$output .= "\"" . $value . "\"\n";
-			}
 			else
 			{
-				$output .= $value . "\n";
+				$output .= $this->formatValue($value) . "\n";
 			}
 		}
 		return $output;
@@ -116,6 +102,32 @@ class HttpEcho
 			}
 		}
 		return $info;
+	}
+	
+	/**
+	 * Formats the given value.
+	 *
+	 * @param mixed $value Value.
+	 * @return string Formatted value.
+	 */
+	protected function formatValue($value)
+	{
+		if (is_bool($value))
+		{
+			return $value ? 'TRUE' : 'FALSE';
+		}
+		elseif (is_string($value))
+		{
+			return '"' . addslashes($value) . '"';
+		}
+		else if (is_null($value))
+		{
+			return 'NULL';
+		}
+		else
+		{
+			return $value;
+		}
 	}
 	
 }
