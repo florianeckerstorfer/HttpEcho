@@ -1,7 +1,17 @@
 <?php
+/**
+ * @package HttpEcho
+ */
 
 namespace Braincrafted\HttpEcho;
 
+/**
+ * HttpEcho is a simple web service that returns the request. It is useful to debug requests.
+ *
+ * @package HttpEcho
+ * @author {@link http://florianeckerstorfer.com Florian Eckerstorfer}
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3
+ */
 class HttpEcho
 {
 	
@@ -32,6 +42,11 @@ class HttpEcho
 		$this->cookies			= $cookies;
 	}
 	
+	/**
+	 * Returns the request info in plain text.
+	 *
+	 * @return string Request info in plain text.
+	 */
 	public function asText()
 	{
 		$output = '';
@@ -77,6 +92,11 @@ class HttpEcho
 		return $output;
 	}
 	
+	/**
+	 * Returns the request info as an array.
+	 *
+	 * @return array Array with request info.
+	 */
 	protected function getRequestInfo()
 	{
 		$info = array(
