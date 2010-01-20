@@ -1,0 +1,8 @@
+------------
+- HttpEcho -
+------------
+
+A simple web service that returns the request. It is useful to debug requests.
+
+The source code is available on GitHub:
+	- http://github.com/florianeckerstorfer/HttpEcho
